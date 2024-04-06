@@ -1,0 +1,46 @@
+
+    <div class="form-box">
+        <div class="form-container">
+        <span class="close"  (click)="closeMessageForm()"  ><button>X</button></span>
+        <h3 class="tag">{{changeFormat?'write something about us':'Edit post'}}</h3>
+        <form class="form-card" [formGroup]="myform" (ngSubmit)="submit()">
+            <div class="form-details">
+                <input type="text" placeholder="firstName"  [formControlName]="'firstName'">
+                <small class="error-code"  *ngIf="myform.get('firstName')?.touched && myform.controls['firstName'].invalid && !myform.controls['firstName'].errors?.['maxlenght']">please enter the name</small>
+                <small class="error-code"  *ngIf="myform.controls['firstName'].errors?.['maxlength']">character should not exceed more then 10</small>
+            </div>
+            <div class="form-details">
+                <input type="text" placeholder="lastName" [formControlName]="'lastName'">
+                <small class="error-code"  *ngIf="myform.get('lastName')?.touched && myform.controls['lastName'].invalid && !myform.controls['lastName'].errors?.['maxlenght']">please enter the name</small>
+                <small class="error-code"  *ngIf="myform.controls['lastName'].errors?.['maxlength']">character should not exceed more then 10</small>
+            </div>
+            <div class="form-details">
+                <input type="text" placeholder="emailId" [formControlName]="'email'">
+                <small class="error-code"  *ngIf="myform.get('email')?.touched && myform.controls['email'].invalid && !myform.controls['email'].errors?.['email']">please enter the email</small>
+                <small class="error-code"  *ngIf="myform.controls['email'].errors?.['email']"> please entter the valid email id</small>
+            </div>
+            <div class="form-details">
+                <input  type="text" placeholder="title" [formControlName]="'title'">
+                <small  class="error-code"  *ngIf="myform.get('title')?.touched && myform.controls['title'].invalid && !myform.controls['title'].errors?.['maxlength']">please enter the title</small>
+                <small class="error-code"  *ngIf="myform.get('title')?.errors?.['maxlength']">not more then 10 characters</small>
+               
+            </div>
+            <div class="form-details">
+                <input type="text" placeholder="Character" [formControlName]="'character'">
+                <small class="error-code"  *ngIf="myform.get('character')?.invalid && myform.get('character')?.touched">please enter the character name</small>
+            </div>
+            <div class="form-details">
+                <input type="text" placeholder="country" [formControlName]="'country'">
+            </div>
+            <div class="form-details">
+                <textarea #mes  cols="30" rows="10"  [formControlName]="'message'"></textarea>
+                <small class="error-code"  *ngIf="myform.get('message')?.invalid && myform.get('character')?.touched">please enter the message</small>
+                <small class="error-code" *ngIf="myform.get('message')?.errors?.['maxlength']">not more then 40 characters</small>
+                <small>{{mes.value.length}}/40</small>
+            </div>
+            <button class="submit-button">{{changeFormat?'click to submit':'click to update'}}</button>
+        </form>
+     </div>
+ </div>
+
+ 
