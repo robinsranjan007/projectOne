@@ -8,3 +8,19 @@ export interface formsdetails{
   character: string,
   message: string,
 }
+
+export interface signUp{
+    idToken: string,
+    email: string,
+    refreshToken: string,
+    expiresIn: string,
+    localId: string,
+    kind:string,
+   
+}
+
+export interface loginup extends signUp{
+  registered:boolean
+}
+
+

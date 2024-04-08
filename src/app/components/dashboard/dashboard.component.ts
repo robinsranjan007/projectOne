@@ -69,14 +69,18 @@ export class DashboardComponent implements OnInit {
   }
 
   private setErrorMessage(err: HttpErrorResponse) {
-    console.log(err, 'this is the error we getting');
+    
     if (err.error.error === 'Permission denied') {
       this.errorMessage =
         'you do not have the permission to perform this action';
     }
+    else if(err.message=="Http failure response for https://myproject-c093d-default-rtdb.fireseio.com/cards.json: 0 Unknown Error")
+    {
+      this.errorMessage="No such Api exist"
+    }
     else
     {
-      this.errorMessage=err.message
+      this.errorMessage="something went wrong please check your internet connection you moron"
     }
   }
 

@@ -13,6 +13,8 @@ import { LogginInterceptor } from './shared/logininterceptor.service';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoaderComponent } from './utility/loader/loader.component';
+import { ErrorsComponent } from './utility/errors/errors.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
+    LoaderComponent,
+    ErrorsComponent,
   ],
   imports: [
     BrowserModule,

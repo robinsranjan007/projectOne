@@ -1,0 +1,12 @@
+.errorDisplay{
+    border: 2px solid red;
+    margin-top: 40vh;
+    width: 100vw;
+    font-weight: bolder;
+    background-color: #FF204E;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    /* z-index: 10000; */
+    position: absolute;
+  }

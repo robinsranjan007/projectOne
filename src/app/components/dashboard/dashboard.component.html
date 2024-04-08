@@ -15,17 +15,15 @@
         </nav>
 </header>
 
-    <div class="errorDisplay" *ngIf="errorMessage">
-       {{errorMessage}}
-    </div>
+    <app-loader *ngIf="isLoading"></app-loader>
+    
+    <app-errors *ngIf="errorMessage" [errorMessage]="errorMessage"></app-errors>
 
     <div class="empty" *ngIf="allposts.length===0 && !isLoading && !errorMessage">
         No Message to display
     </div>
      
-    <div *ngIf="isLoading" class="loader">
-    </div>
-    
+
 <div class="general-box" *ngIf="!isLoading && !errorMessage">
 <div class="cards" *ngFor="let item of allposts">
     <img src="https://qph.cf2.quoracdn.net/main-qimg-b49869393201bfecdb67f1dc030ede55-lq" alt="">

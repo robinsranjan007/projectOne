@@ -5,9 +5,9 @@ import { Observable, Subject, tap } from 'rxjs';
      intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>{
         
          
-         const modifiedreq= req.clone({headers:req.headers.set('auth-token','robins is great')})
+        //  const modifiedreq= req.clone({headers:req.headers.set('auth-token','robins is great')})
     
-        return next.handle(modifiedreq).pipe(
+        return next.handle(req).pipe(
             tap((event: HttpEvent<any>) => {
                 if (event.type === HttpEventType.Response) {
                   console.log('response has arrived', event.body);

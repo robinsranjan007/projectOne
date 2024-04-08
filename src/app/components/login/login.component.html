@@ -1,32 +1,55 @@
-<div class="container">
-	<div class="screen">
-		<div class="screen__content">
-			<form class="login" [formGroup]="signupForm" (submit)="submit()">
-				<div class="login__field">
-					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="User name" [formControlName]="'UserName'">
-				</div>
-				<div class="login__field">
-					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password"  [formControlName]="'password'">
-				</div>
-				<div>
-					<p style="display: inline-block;">{{signup?'Do you have a account yet?':'Already a memeber?'}}
-					</p>
-					<button class="button_register"  type="button" (click)="newUser()">{{signup?'SignUp':'Login'}}</button>
-				</div>
-				<button class="button login__submit" [disabled]="signupForm.invalid">
-					<span class="button__text">{{signup?'SignUp':'Login'}}</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
-			</form>
-			
-		</div>
-		<div class="screen__background">
-			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
-			<span class="screen__background__shape screen__background__shape2"></span>
-			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
-	</div>
+<app-errors [errorMessage]="errorMessage" *ngIf="errorMessage"></app-errors>
+<div class="container" *ngIf="!errorMessage">
+  <div class="screen">
+    <div class="screen__content">
+      <form class="login" [formGroup]="signupForm" (submit)="submit()">
+        <app-loader class="loader" *ngIf="isloading"></app-loader>
+        <div class="login__field" *ngIf="!isloading">
+          <i class="login__icon fas fa-user"></i>
+          <input
+            type="text"
+            class="login__input"
+            placeholder="email"
+            [formControlName]="'email'"
+          />
+        </div>
+        <div class="login__field" *ngIf="!isloading">
+          <i class="login__icon fas fa-lock"></i>
+          <input
+            type="password"
+            class="login__input"
+            placeholder="Password"
+            [formControlName]="'password'"
+          />
+        </div>
+        <div>
+          <p style="display: inline-block" *ngIf="!isloading">
+            {{ signup ? "Already a member?" : "Do you have a account yet?" }}
+          </p>
+          <button
+            class="button_register"
+            type="button"
+            *ngIf="!isloading"
+            (click)="newUser()"
+          >
+            {{ signup ? "Login" : "Signup" }}
+          </button>
+        </div>
+        <button
+          *ngIf="!isloading"
+          class="button login__submit"
+          [disabled]="signupForm.invalid"
+        >
+          <span class="button__text">{{ signup ? "SignUp" : "Login" }}</span>
+          <i class="button__icon fas fa-chevron-right"></i>
+        </button>
+      </form>
+    </div>
+    <div class="screen__background">
+      <span class="screen__background__shape screen__background__shape4"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+  </div>
 </div>

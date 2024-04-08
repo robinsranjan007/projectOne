@@ -88,6 +88,7 @@ body {
 	width: 320px;
 	padding: 30px;
 	padding-top: 70px;
+	 
 }
 
 .login__field {
@@ -164,4 +165,11 @@ body {
    cursor: pointer;
    color: blue;
 }
- 
+ /*  */
+
+ .loader{
+	z-index: 1000;
+	position: relative;
+	right: 750px;
+	bottom: 150px;
+ }
