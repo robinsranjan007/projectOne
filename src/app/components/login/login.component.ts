@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   
   submit() {
     if (this.signup) {
-      console.log('why did you call me')
       this.isloading=true;
       const email = this.signupForm.get('email')?.value;
       const password = this.signupForm.get('password')?.value;
@@ -39,12 +38,10 @@ export class LoginComponent implements OnInit {
         next: (val) => {
           this.isloading=false;
           this.router.navigate(['dashboard'])
-
         },
         error: (errMsg) => {
           this.isloading=false;
           this.errorMessage=errMsg;
-          console.log(errMsg,'this is error message')
         },
       });
     }

@@ -10,7 +10,10 @@ get Token()
         {
             return null;
         }
-    return this._token;
+    else
+    {
+          return this._token;
+    }
 }
 
 

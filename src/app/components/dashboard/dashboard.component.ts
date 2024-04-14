@@ -64,6 +64,9 @@ export class DashboardComponent implements OnInit {
       error: (err) => {
         this.isLoading = false;
         this.setErrorMessage(err);
+        setTimeout(()=>{
+          this.errorMessage=null;
+         },2000)
       },
     });
   }
@@ -86,10 +89,12 @@ export class DashboardComponent implements OnInit {
 
   deletePostMessage(id: string | undefined) {
     this.services.deleteData(id);
+    
   }
 
   deletaAll() {
     this.services.deeteAllData();
+
   }
 
   updateMessage(id: string | undefined) {

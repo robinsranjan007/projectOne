@@ -1,23 +1,39 @@
-import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import {
+  HttpEvent,
+  HttpEventType,
+  HttpHandler,
+  HttpInterceptor,
+  HttpParams,
+  HttpRequest,
+} from '@angular/common/http';
+import { Observable, Subject, exhaustMap, take, tap } from 'rxjs';
+import { AuthService } from './auth.service';
+import { Injectable } from '@angular/core';
 
- export class AuthInterceptorService implements HttpInterceptor{
-     intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>{
-        
-         
-        //  const modifiedreq= req.clone({headers:req.headers.set('auth-token','robins is great')})
+
+@Injectable()
+export class AuthInterceptorService implements HttpInterceptor {
     
-        return next.handle(req).pipe(
-            tap((event: HttpEvent<any>) => {
-                if (event.type === HttpEventType.Response) {
-                  console.log('response has arrived', event.body);
-                }
-            })
-        )
+  constructor(private authservice: AuthService) {}
 
-     }
-
-// we can use the interceptor for loading
-
-    
- }
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return this.authservice.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        if (!user || !user.Token) {
+            console.log('i am not being called')
+           return next.handle(req)
+        }
+        console.log(' i am being called')
+        const modifiedreq = req.clone({
+          params: new HttpParams().set('auth', user?.Token),
+        });
+        return next.handle(modifiedreq);
+      })
+    );
+ 
+  }
+}

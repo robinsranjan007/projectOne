@@ -18,6 +18,9 @@ export interface signUp{
     kind:string,
    
 }
+export interface FormsDetailsResponse {
+  [key: string]: formsdetails;
+}
 
 export interface loginup extends signUp{
   registered:boolean
