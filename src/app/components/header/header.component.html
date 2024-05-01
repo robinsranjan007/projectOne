@@ -1,6 +1,12 @@
 <div class="topnav">
     <a  *ngIf="login" (click)="signout()"> Logout</a>
     <a *ngIf="!login" [routerLink]="'/signup'" [routerLinkActiveOptions]={exact:true} [routerLinkActive]="'active'">Login</a>
-    <a *ngIf="login"  [routerLink]="'/dashboard'" [routerLinkActiveOptions]={exact:true} [routerLinkActive]="'active'">Dashboard</a>
+     
+       
+     
+        <a  *ngIf="login" [routerLink]="'/dashboard/overview'">overview</a>
+        <a *ngIf="login" [routerLink]="'/dashboard/stats'">stats</a>
+     
+   
     <a  [routerLink]="'/home'" [routerLinkActiveOptions]={exact:true} [routerLinkActive]="'active'">Home</a>
   </div>

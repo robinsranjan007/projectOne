@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthrouteService } from './routeguards/authroute.service';
+import { OverviewComponent } from './components/dashboard/overview/overview.component';
+import { StatsComponent } from './components/dashboard/stats/stats.component';
  
 
 const routes: Routes = [
@@ -12,14 +13,25 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
+    path: 'dashboard',
+    canActivate: [AuthrouteService],
+    children: [
+      { path: '', redirectTo: 'overview', pathMatch: 'full' },
+      {
+        path: 'overview',
+        component: OverviewComponent,
+      },
+      {
+        path: 'stats',
+        component: StatsComponent,
+      },
+    ],
+  },
+  {
     path:'home',
     component:HomeComponent
   },
-  {
-    path:'dashboard',
-    component:DashboardComponent,
-    canActivate:[AuthrouteService]
-  },
+
   {
     path:'signup',
     component:LoginComponent
@@ -31,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [ RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

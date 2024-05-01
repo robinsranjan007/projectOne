@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       this.authentication.signUp(email, password).subscribe({
         next: (val) => {
           this.isloading=false;
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['dashboard/overview'])
         },
         error: (errMsg) => {
           this.isloading=false;
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         next:(val)=>{ 
           this.isloading=false;
           alert('you have been succesfully logged in')
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['dashboard/overview'])
         },
         error:(errMsg)=>{
           

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable,map } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable,map ,take} from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 
 @Injectable({
@@ -8,12 +8,19 @@ import { AuthService } from '../shared/auth.service';
 })
 export class AuthrouteService  implements CanActivate{
 
-  constructor(private authservice:AuthService) { }
+  constructor(private authservice:AuthService,private router:Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     
-return this.authservice.user.pipe(
+return this.authservice.user.pipe(take(1),
   map((val)=>{
-    return val?true:false
+  if(val)
+    {
+      return true;
+    }
+    else
+    {
+return this.router.createUrlTree(['/signup'])
+    }
   })
 )
 
