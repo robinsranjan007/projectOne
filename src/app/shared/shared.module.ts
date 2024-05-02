@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { ErrorsComponent } from "../utility/errors/errors.component";
 import { LoaderComponent } from "../utility/loader/loader.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 
 
@@ -10,8 +11,8 @@ import { ReactiveFormsModule } from "@angular/forms";
         LoaderComponent, 
         ErrorsComponent
     ],
-    imports:[ReactiveFormsModule,],
-    exports:[LoaderComponent,ErrorsComponent,  ReactiveFormsModule,]
+    imports:[ReactiveFormsModule,CommonModule],
+    exports:[LoaderComponent,ErrorsComponent,  ReactiveFormsModule,CommonModule]
 })
 
 export class sharedModule{

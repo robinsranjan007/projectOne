@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthrouteService } from './routeguards/authroute.service';
-import { OverviewComponent } from './components/dashboard/overview/overview.component';
-import { StatsComponent } from './components/dashboard/stats/stats.component';
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { dashboardRouterModule } from './components/dashboard/dashboard-router.module';
+import { authModule } from './components/login/auth.module';
  
 
 const routes: Routes = [
@@ -13,37 +13,13 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
-    path: 'dashboard',
-    canActivate: [AuthrouteService],
-    children: [
-      { path: '', redirectTo: 'overview', pathMatch: 'full' },
-      {
-        path: 'overview',
-        component: OverviewComponent,
-      },
-      {
-        path: 'stats',
-        component: StatsComponent,
-      },
-    ],
-  },
-  {
-    path:'home',
-    component:HomeComponent
-  },
-
-  {
-    path:'signup',
-    component:LoginComponent
-  },
-  {
     path:'**',
     component:HomeComponent
   }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes)],
+  imports: [ RouterModule.forRoot(routes),dashboardRouterModule,authModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
