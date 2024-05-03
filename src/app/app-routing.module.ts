@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardModule } from './components/dashboard/dashboard.module';
 import { dashboardRouterModule } from './components/dashboard/dashboard-router.module';
 import { authModule } from './components/login/auth.module';
  
@@ -13,13 +11,21 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
+    path:'dashboard',
+    loadChildren:()=>import('./components/dashboard/dashboard.module').then(mod=>mod.DashboardModule)
+  },
+  {
+    path:'signup',
+    loadChildren:()=>import('./components/login/auth.module').then(mod=>(mod.authModule))
+  },
+  {
     path:'**',
     component:HomeComponent
   }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes),dashboardRouterModule,authModule],
+  imports: [ RouterModule.forRoot(routes, {preloadingStrategy:PreloadAllModules}),dashboardRouterModule,authModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

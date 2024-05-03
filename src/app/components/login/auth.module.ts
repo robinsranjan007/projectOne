@@ -7,7 +7,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 const loginroutes:Routes=[
     {
-        path:'signup',
+        path:'',
         component:LoginComponent
       }
 ]
@@ -17,7 +17,6 @@ const loginroutes:Routes=[
 @NgModule({
     declarations:[LoginComponent],
     imports:[RouterModule.forChild(loginroutes),sharedModule],
-    exports:[LoginComponent,RouterModule]
 })
 
 

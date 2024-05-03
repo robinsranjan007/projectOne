@@ -7,7 +7,7 @@ import { StatsComponent } from "./stats/stats.component";
 
 const routes:Routes=[
     {
-      path: 'dashboard',
+      path: '',
       canActivate: [AuthrouteService],
       children: [
         {

@@ -6,6 +6,7 @@ import { OverviewComponent } from "./overview/overview.component";
 import { CommonModule } from "@angular/common";
 import { sharedModule } from "src/app/shared/shared.module";
 import { RouterModule, Routes } from "@angular/router";
+import { dashboardRouterModule } from "./dashboard-router.module";
  
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RouterModule, Routes } from "@angular/router";
   imports: [
     CommonModule,
     sharedModule,
-    RouterModule
+    RouterModule,
+    dashboardRouterModule
     
 ],
   exports: [DashboardComponent,CardDetailsComponent,DetailsComponent,OverviewComponent,sharedModule],
